@@ -14,3 +14,4 @@ yarn dev
 ### Built Using
 - [React](https://reactjs.org/)
 - [NextJS](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
