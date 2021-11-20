@@ -7,8 +7,8 @@ First, run the development server:
 ```bash
 git clone git@github.com:1tpp/1tpp.com.git
 cd 1tpp.com
-yarn
-yarn dev
+npm i
+npm run dev
 ```
 
 ### Built Using
