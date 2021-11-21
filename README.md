@@ -15,3 +15,4 @@ npm run dev
 - [React](https://reactjs.org/)
 - [NextJS](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
