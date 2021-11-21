@@ -44,6 +44,7 @@
     "lint-staged": "^12.0.3",
     "next-transpile-modules": "^9.0.0",
     "postcss": "latest",
+    "prettier": "^2.4.1",
     "tailwindcss": "latest",
     "typescript": "4.5.2"
   }
