@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint"
   },
   "husky": {
     "hooks": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "@react-three/fiber": "^7.0.19",
     "@types/three": "^0.134.0",
+    "gsap": "^3.8.0",
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
