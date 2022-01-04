@@ -1,7 +1,15 @@
+import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { gsap } from 'gsap'
 
 const Home: NextPage = () => {
+  const textRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    gsap.to(textRef.current, { rotation: '+=360', repeat: -1 })
+  })
+
   return (
     <div>
       <Head>
@@ -10,8 +18,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='flex justify-center items-center h-screen w-full'>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <main className="flex justify-center items-center h-screen w-full">
+        <h1 className="text-3xl font-bold underline" ref={textRef}>
+          Hello world!
+        </h1>
       </main>
     </div>
   )
