@@ -12,7 +12,7 @@ Personal Website
 git clone https://github.com/1tpp/1tpp.com.git
 cd 1tpp.com
 npm i
-npm dev
+npm run dev
 ```
 > Personally, I prefer NPM because many times I had conflict with global packages when using yarn and npm in the same machine. 
 > So keep it simple and use NPM!
