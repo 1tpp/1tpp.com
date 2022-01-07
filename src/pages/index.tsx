@@ -1,18 +1,35 @@
-import React, { Suspense, useRef } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { gsap } from 'gsap'
+
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stage } from '@react-three/drei'
+
 import Duck from '../components/models/Duck'
 
-const Home: NextPage = () => {
-  const textRef = React.useRef<HTMLDivElement>(null)
-  const duckRef = React.useRef<any>(null);
+import MainLayout from '@/components/layouts/MainLayout'
 
-  React.useEffect(() => {
-    gsap.to(textRef.current, { rotation: '+=360', repeat: -1 })
-  })
+import Navbar from '@/components/Navbar'
+import Dialogue from '@/components/Dialogue'
+import DialoguesData from '@/data/dialoguesData.json'
+
+const Home: NextPage = () => {
+  const duckRef = React.useRef<any>(null)
+
+  const [dialogueIndex, setDialogueIndex] = useState(0)
+
+  const handleOnClick = (event: any) => {
+    event.preventDefault()
+
+    if (dialogueIndex < DialoguesData.length - 1) {
+      setDialogueIndex(dialogueIndex + 1)
+    } else {
+      setDialogueIndex(0)
+      return
+    }
+
+    console.log(dialogueIndex)
+  }
 
   return (
     <div>
@@ -22,9 +39,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex justify-center items-center h-screen w-full">
+      <MainLayout>
+        {/* <Navbar /> */}
 
-        <Canvas shadows dpr={[1, 2]} camera={{ fov: 50 }}>
+        <div onClick={handleOnClick}>
+          <Dialogue
+            actor={DialoguesData[dialogueIndex].actor}
+            dialogue={DialoguesData[dialogueIndex].dialogue}
+          />
+        </div>
+
+        <Canvas shadows dpr={[1, 2]} camera={{ fov: 90 }}>
           <Suspense fallback={null}>
             <Stage
               controls={duckRef}
@@ -32,12 +57,12 @@ const Home: NextPage = () => {
               intensity={1}
               environment="city"
             >
-              <Duck />
+              <Duck position={[0, 0, 0]} />
             </Stage>
           </Suspense>
-          <OrbitControls ref={duckRef} autoRotate />
+          <OrbitControls ref={duckRef} />
         </Canvas>
-      </main>
+      </MainLayout>
     </div>
   )
 }
