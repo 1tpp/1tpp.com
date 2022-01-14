@@ -27,8 +27,6 @@ const Home: NextPage = () => {
       setDialogueIndex(0)
       return
     }
-
-    console.log(dialogueIndex)
   }
 
   return (
