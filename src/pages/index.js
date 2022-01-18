@@ -119,15 +119,17 @@ const Home = () => {
           <pointLight position={[10, 10, 10]} />
           {/* <OrbitControls ref={duckRef} /> */}
         </Canvas>
-
         <section className="section-one">
-          <div onClick={handleOnClick}>
+          <div
+            onClick={handleOnClick}
+          >
             <Dialogue
               actor={DialoguesData[dialogueIndex].actor}
               dialogue={DialoguesData[dialogueIndex].dialogue}
             />
           </div>
         </section>
+
         <section id="section-two"></section>
         <section id="section-three"></section>
         <section id="section-four"></section>
