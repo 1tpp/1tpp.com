@@ -1,5 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 100;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #000000 #404040;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #404040;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 16px;
+  border: 2px groove #14b679;
+}
