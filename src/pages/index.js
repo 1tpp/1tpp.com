@@ -113,16 +113,16 @@ const Home = () => {
             userSelect: 'none',
           }}
         >
-          <Duck position={[0, 0, 0]} />
-          <AnimationWrapper />
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          {/* <OrbitControls ref={duckRef} /> */}
+          <Suspense fallback={null}>
+            <Duck position={[0, 0, 0]} />
+            <AnimationWrapper />
+            <ambientLight />
+            <pointLight position={[10, 10, 10]} />
+            {/* <OrbitControls ref={duckRef} /> */}
+          </Suspense>
         </Canvas>
         <section className="section-one">
-          <div
-            onClick={handleOnClick}
-          >
+          <div onClick={handleOnClick}>
             <Dialogue
               actor={DialoguesData[dialogueIndex].actor}
               dialogue={DialoguesData[dialogueIndex].dialogue}
