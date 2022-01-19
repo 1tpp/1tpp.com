@@ -2,7 +2,7 @@ import React from 'react'
 
 const Dialogue = (props: any) => {
   return (
-    <div className="w-full bottom-24 absolute z-10">
+    <div className="w-full bottom-24 z-50 absolute">
       <div
         className="flex flex-col mx-auto  max-w-4xl shadow-lg rounded-md p-4 bg-gray-200 select-none relative"
         style={{

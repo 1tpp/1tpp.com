@@ -9,10 +9,10 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 import Duck from '../components/models/Duck'
 
-import MainLayout from '@/components/layouts/MainLayout'
-
 import Dialogue from '@/components/Dialogue'
 import DialoguesData from '@/data/dialoguesData.json'
+
+import Container from '@/components/Container'
 
 import * as THREE from 'three'
 
@@ -80,8 +80,20 @@ function AnimationWrapper() {
 
 const Home = () => {
   const duckRef = React.useRef(null)
-
+  const [repoList, setRepoList] = useState([])
   const [dialogueIndex, setDialogueIndex] = useState(0)
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/1tpp/repos')
+      .then((res) => res.json())
+      .then((data) => {
+        const result = data.filter((repo) => {
+          return repo.fork == false
+        })
+
+        setRepoList(result)
+      })
+  }, [])
 
   const handleOnClick = (event) => {
     event.preventDefault()
@@ -108,7 +120,7 @@ const Home = () => {
           style={{
             width: '100vw',
             height: '100vh',
-            zIndex: 50,
+            zIndex: 10,
             position: 'fixed',
             userSelect: 'none',
           }}
@@ -121,19 +133,52 @@ const Home = () => {
             {/* <OrbitControls ref={duckRef} /> */}
           </Suspense>
         </Canvas>
-        <section className="section-one">
-          <div onClick={handleOnClick}>
-            <Dialogue
-              actor={DialoguesData[dialogueIndex].actor}
-              dialogue={DialoguesData[dialogueIndex].dialogue}
-            />
-          </div>
-        </section>
 
-        <section id="section-two"></section>
-        <section id="section-three"></section>
-        <section id="section-four"></section>
-        <section id="section-five"></section>
+        <Container>
+          <section id="section-one" className="w-full h-screen relative z-50">
+            <div onClick={handleOnClick}>
+              <Dialogue
+                actor={DialoguesData[dialogueIndex].actor}
+                dialogue={DialoguesData[dialogueIndex].dialogue}
+              />
+            </div>
+          </section>
+
+          <section id="section-two" className="w-full h-auto relative z-50">
+            <div className="flex flex-col items-center justify-center">
+              <h3 className="text-2xl font-bold tracking-tight dark:text-white">
+                Project on Github
+              </h3>
+              <div className="space-y-8 flex justify-center items-end flex-row flex-wrap">
+                {repoList.map((repo) => (
+                  <a key={repo.id} href={`${repo.html_url}`} target="_blank">
+                    <div className="p-6 mr-8 max-w-sm h-32 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                      <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {repo.name}
+                      </h3>
+                      <p className="font-normal text-gray-700 dark:text-gray-400">
+                        {repo.description}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section
+            id="section-three"
+            className="w-full h-screen relative z-50"
+          ></section>
+          <section
+            id="section-four"
+            className="w-full h-screen relative z-50"
+          ></section>
+          <section
+            id="section-five"
+            className="w-full h-screen relative z-50"
+          ></section>
+        </Container>
       </VantaNet>
     </>
   )

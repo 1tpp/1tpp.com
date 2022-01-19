@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Container: React.FC = ({ children }) => {
-  return <div className="container mx-auto z-10">{children}</div>
+const Container: React.FC = (props) => {
+  return <div className="container mx-auto relative z-50">{props.children}</div>
 }
 
 export default Container
