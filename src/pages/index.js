@@ -22,6 +22,17 @@ import * as THREE from 'three'
 import NET from 'vanta/dist/vanta.net.min'
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+
 const VantaNet = ({ children }) => {
   const [vantaEffect, setVantaEffect] = useState(0)
   const vantaRef = useRef(null)
@@ -78,6 +89,50 @@ function AnimationWrapper() {
   }, [])
 
   return null
+}
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+
+const options = {
+  indexAxis: 'y',
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'right',
+    },
+    title: {
+      display: true,
+      text: 'Programming Experience',
+    },
+  },
+}
+
+const labels = [
+  'Rust',
+  'Python',
+  'C',
+  'C#',
+  'Kolin',
+  'Java',
+  'JavaScript',
+  'Solidity',
+]
+
+const data = {
+  labels,
+  datasets: [
+    {
+      label: 'ระดับความรู้',
+      data: [1.5, 3.7, 4.2, 3, 1.2, 3.8, 4.7, 0.1, 10],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+  ],
 }
 
 const Home = () => {
@@ -159,7 +214,6 @@ const Home = () => {
 
         <Container>
           <section
-            data-aos="zoom-in"
             id="section-one"
             className="w-full h-screen flex justify-center items-center relative z-50"
           >
@@ -258,10 +312,17 @@ const Home = () => {
           </section>
           <section
             id="section-four"
-            className="w-full h-screen relative z-50 bg-yellow-500 opacity-10"
-          ></section>
+            className="w-full h-screen grid grid-cols-2 relative z-50"
+          >
+            <div></div>
+            <div data-aos="zoom-in-left">
+              <Bar options={options} data={data} />
+            </div>
+          </section>
           <section id="section-five" className="w-full h-screen relative z-50">
-            <div className="text-white bottom-10 absolute">
+            <div
+              className="text-white bottom-10 absolute"
+            >
               <h3>Contact</h3>
               <div className="space-x-10 text-2xl font-bold">
                 <a className="hover:text-green-400" href="">
