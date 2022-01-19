@@ -24,3 +24,4 @@ npm run dev
 - [TailwindCSS](https://tailwindcss.com/)
 - [ThreeJS](https://threejs.org/)
 - [React-three-fiber](https://docs.pmnd.rs/react-three-fiber/)
+- [Gsap](https://greensock.com/gsap/)
