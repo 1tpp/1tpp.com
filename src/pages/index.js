@@ -4,7 +4,8 @@ import Head from 'next/head'
 import Typed from 'typed.js'
 
 import { Canvas, useThree } from '@react-three/fiber'
-import { OrbitControls, Stage } from '@react-three/drei'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -97,8 +98,11 @@ const Home = () => {
       smartBackspace: true,
       loop: true,
       showCursor: true,
-      cursorChar: "|"
+      cursorChar: '|',
     })
+
+    AOS.init()
+    AOS.refresh()
 
     fetch('https://api.github.com/users/1tpp/repos')
       .then((res) => res.json())
@@ -155,21 +159,30 @@ const Home = () => {
         </Canvas>
 
         <Container>
-          <section id="section-one" className="w-full h-screen flex justify-center items-center relative z-50">
+          <section
+            id="section-one"
+            className="w-full h-screen flex justify-center items-center relative z-50"
+          >
             <div className="text-white">
-             <span className="text-5xl" ref={TypedRef}></span>
+              <span className="text-4xl typed" ref={TypedRef}></span>
             </div>
           </section>
 
           <section id="section-two" className="w-full h-auto relative z-50">
-            <div className="flex flex-col items-center justify-center">
+            <div
+              data-aos="fade-up-left"
+              className="flex flex-col items-center justify-center"
+            >
               <h3 className="text-2xl font-bold tracking-tight dark:text-white">
                 Project on Github
               </h3>
               <div className="space-y-8 flex justify-center items-end flex-row flex-wrap">
                 {repoList.map((repo) => (
                   <a key={repo.id} href={`${repo.html_url}`} target="_blank">
-                    <div className="p-6 mr-8 max-w-sm h-32 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <div
+                      data-aos="flip-down"
+                      className="p-6 mr-8 max-w-sm h-32 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                    >
                       <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {repo.name}
                       </h3>

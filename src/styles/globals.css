@@ -17,6 +17,10 @@ body {
   overflow-x: hidden;
 }
 
+.typed-cursor {
+  font-size: 2rem;
+}
+
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
