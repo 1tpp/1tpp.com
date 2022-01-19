@@ -1,6 +1,8 @@
 import React, { Suspense, useState, useEffect, useRef } from 'react'
 import Head from 'next/head'
 
+import Typed from 'typed.js'
+
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, Stage } from '@react-three/drei'
 
@@ -62,7 +64,7 @@ function AnimationWrapper() {
 
   React.useEffect(() => {
     scene.rotation.set(0, 0, 0)
-    camera.position.set(2, 0, 5)
+    camera.position.set(2, 1, 5)
 
     tl.to(scene.rotation, { y: 4.79 })
       .to(camera.position, { x: -0.1 })
@@ -80,10 +82,24 @@ function AnimationWrapper() {
 
 const Home = () => {
   const duckRef = React.useRef(null)
+  const TypedRef = useRef(null)
   const [repoList, setRepoList] = useState([])
   const [dialogueIndex, setDialogueIndex] = useState(0)
 
   useEffect(() => {
+    const typed = new Typed(TypedRef.current, {
+      strings: ['Welcome to 1tpp.com', 'print("Panapat Pilapa")'], // Strings to display
+      // Speed settings, try diffrent values untill you get good results
+      startDelay: 300,
+      typeSpeed: 80,
+      backSpeed: 20,
+      backDelay: 20,
+      smartBackspace: true,
+      loop: true,
+      showCursor: true,
+      cursorChar: "|"
+    })
+
     fetch('https://api.github.com/users/1tpp/repos')
       .then((res) => res.json())
       .then((data) => {
@@ -93,6 +109,10 @@ const Home = () => {
 
         setRepoList(result)
       })
+
+    return () => {
+      typed.destroy()
+    }
   }, [])
 
   const handleOnClick = (event) => {
@@ -135,12 +155,9 @@ const Home = () => {
         </Canvas>
 
         <Container>
-          <section id="section-one" className="w-full h-screen relative z-50">
-            <div onClick={handleOnClick}>
-              <Dialogue
-                actor={DialoguesData[dialogueIndex].actor}
-                dialogue={DialoguesData[dialogueIndex].dialogue}
-              />
+          <section id="section-one" className="w-full h-screen flex justify-center items-center relative z-50">
+            <div className="text-white">
+             <span className="text-5xl" ref={TypedRef}></span>
             </div>
           </section>
 
