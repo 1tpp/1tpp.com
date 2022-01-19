@@ -43,7 +43,7 @@ const VantaNet = ({ children }) => {
     }
   }, [vantaEffect])
   return (
-    <div className="w-full h-full relative" ref={vantaRef}>
+    <div className="w-screen" ref={vantaRef}>
       {children}
     </div>
   )
@@ -55,7 +55,7 @@ function AnimationWrapper() {
   const { scene, camera } = useThree()
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: '#section-two',
+      trigger: '#section-one',
       start: 'top top',
       endTrigger: '#section-five',
       end: 'bottom bottom',
@@ -67,12 +67,11 @@ function AnimationWrapper() {
     scene.rotation.set(0, 0, 0)
     camera.position.set(2, 1, 5)
 
-    tl.to(scene.rotation, { y: 4.79 })
-      .to(camera.position, { x: -0.1 })
-      .to(scene.rotation, { z: 1.6 })
-      .to(scene.rotation, { z: 0.02, y: 3.1 }, 'simultaneously')
-      .to(camera.position, { x: 0.16 }, 'simultaneously')
-
+    tl.to(scene.rotation, { x: 2, y: 2 })
+      .to(scene.rotation, { x: 0.4, y: 2, z: -0.2 })
+      .to(scene.rotation, { x: -0.2, y: 2, z: 0.4 })
+      .to(scene.rotation, { x: 0.02, y: 1, z: 1 }, 'simultaneously')
+      .to(camera.rotation, { x: -0.2, y: 0.4, z: 3 }, 'simultaneously')
     setInterval(() => {
       forceUpdate()
     }, 500)
@@ -160,6 +159,7 @@ const Home = () => {
 
         <Container>
           <section
+            data-aos="zoom-in"
             id="section-one"
             className="w-full h-screen flex justify-center items-center relative z-50"
           >
@@ -168,9 +168,12 @@ const Home = () => {
             </div>
           </section>
 
-          <section id="section-two" className="w-full h-auto relative z-50">
+          <section
+            id="section-two"
+            className="w-full h-screen flex justify-center items-center relative z-50"
+          >
             <div
-              data-aos="fade-up-left"
+              data-aos="flip-down"
               className="flex flex-col items-center justify-center"
             >
               <h3 className="text-2xl font-bold tracking-tight dark:text-white">
@@ -181,7 +184,7 @@ const Home = () => {
                   <a key={repo.id} href={`${repo.html_url}`} target="_blank">
                     <div
                       data-aos="flip-down"
-                      className="p-6 mr-8 max-w-sm h-32 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                      className="p-6 mr-8 max-w-sm h-32 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 hover:border-green-400 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     >
                       <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {repo.name}
@@ -198,16 +201,107 @@ const Home = () => {
 
           <section
             id="section-three"
-            className="w-full h-screen relative z-50"
-          ></section>
+            className="w-full h-screen grid  lg:grid-cols-2 relative z-50"
+          >
+            <div></div>
+            <div className="w-full h-full p-12">
+              <div
+                data-aos="fade-left"
+                className="flex flex-col items-center justify-center space-x-4"
+              >
+                <h3 className="text-4xl font-bold text-white">Profile</h3>
+
+                <p className="text-2xl text-white">
+                  {'{'}
+                  <p className="pl-4">
+                    "รูป":
+                    <a
+                      className="hover:text-green-400"
+                      href="https://cdn.discordapp.com/attachments/904252206226735114/933448755435429908/Profile.png"
+                    >
+                      "https://cdn.discordapp.com/attachments/904252206...."
+                    </a>
+                  </p>
+                  <p className="pl-4">
+                    "ชื่อ":{' '}
+                    <span className="hover:text-green-400">
+                      "ปาณพัฒน์ พิลาภา"
+                    </span>
+                    ,
+                  </p>
+                  <p className="pl-4">
+                    "ชื่อเล่น":{' '}
+                    <span className="hover:text-green-400">"อิฐ"</span>,
+                  </p>
+                  <p className="pl-4">
+                    "อายุ":{' '}
+                    <span className="hover:text-green-400">"17 ปี"</span>,
+                  </p>
+                  <p className="pl-4">
+                    "ความสามารถ":{' '}
+                    <span className="hover:text-green-400">
+                      "C, Java, Javascript, Python, Kotlin, C#, Rust, Solidity"
+                    </span>
+                    ,
+                  </p>
+                  <p className="pl-4">
+                    "ความสนใจ":
+                    <span className="hover:text-green-400">
+                      "Blockchain, Game Development, Web Technology, Internet Of
+                      Thing, UX/UI, Financial"{' '}
+                    </span>
+                  </p>
+                  {'}'}
+                </p>
+              </div>
+            </div>
+          </section>
           <section
             id="section-four"
-            className="w-full h-screen relative z-50"
+            className="w-full h-screen relative z-50 bg-yellow-500 opacity-10"
           ></section>
-          <section
-            id="section-five"
-            className="w-full h-screen relative z-50"
-          ></section>
+          <section id="section-five" className="w-full h-screen relative z-50">
+            <div className="text-white bottom-10 absolute">
+              <h3>Contact</h3>
+              <div className="space-x-10 text-2xl font-bold">
+                <a className="hover:text-green-400" href="">
+                  Facebook
+                </a>
+                <a
+                  className="hover:text-green-400"
+                  href="https://twitter.com/1tppcom"
+                >
+                  Twitter
+                </a>
+                <a
+                  className="hover:text-green-400"
+                  href="https://github.com/1tpp"
+                >
+                  Github
+                </a>
+                <a
+                  className="hover:text-green-400"
+                  href="https://www.linkedin.com/in/1tpp/"
+                >
+                  Linkedin
+                </a>
+                <a
+                  className="hover:text-green-400"
+                  href="mailto:contact@1tpp.com?subject = Feedback&body = Message"
+                  target="_blank"
+                >
+                  Email
+                </a>
+                <a
+                  className="hover:text-green-400"
+                  href="https://blog.1tpp.com"
+                  target="_blank"
+                >
+                  Blog
+                </a>
+              </div>
+            </div>
+          </section>
         </Container>
       </VantaNet>
     </>
