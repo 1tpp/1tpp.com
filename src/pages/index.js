@@ -271,9 +271,9 @@ const Home = () => {
                     "รูป":
                     <a
                       className="hover:text-green-400"
-                      href="https://cdn.discordapp.com/attachments/904252206226735114/933448755435429908/Profile.png"
+                      href="undefined "
                     >
-                      "https://cdn.discordapp.com/attachments/904252206...."
+                      "undefined..."
                     </a>
                   </p>
                   <p className="pl-4">
